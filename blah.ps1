@@ -1,7 +1,7 @@
 function Agent {
 	param (
 		 #Default Strings, should be replaced via command line arguments. 
-		[string]$key
+		[string]$key,
 		[string]$eip,
 		[string]$ep,
 		[string]$ek
